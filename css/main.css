@@ -1,0 +1,119 @@
+body{
+    padding-top: 80px;
+    padding-bottom: 30px;
+}
+
+.hidden{
+    display: none !important;
+}
+
+
+/* *** 上部パネル *** */
+
+.panel-error-video-initialize{
+    display: none;
+}
+
+#offline{
+    display: none;
+}
+
+#offline:target{
+    display: block;
+}
+
+
+/* *** ビデオ画面 *** */
+
+#video-inputbox-container{
+    width: 640px;
+    margin: 0 auto;
+    float: left;
+}
+
+#video-container{
+    position: relative;
+    width: 100%;
+}
+
+#localVideo{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    width: 160px !important;
+}
+
+#remoteVideo,
+#headtracker{
+    display: none;
+}
+
+#remoteDisplay{
+    background-color: #eee;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* *** チャット欄 *** */
+
+.chat-inputbox{
+    width: 100%;
+}
+
+#chat-history{
+    max-height: 300px;
+    overflow: auto;
+}
+
+.progress{
+    margin-top: 10px;
+}
+
+
+/* *** 画面オーバーレイ *** */
+
+#messageBalloonContent{
+    position: absolute;
+    font-family: 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    z-index: 999;
+    width: auto;
+    max-width: 300px;
+}
+
+.mmdMessageBalloon{
+    padding: 30px;
+    box-sizing: border-box;
+    top: 50px !important;
+    left: 50px !important;
+    display: none;
+    max-width: 7em !important;
+}
+
+.mmdMessageBalloon > div {
+    position: relative;
+    background-color: #BCE8F1;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    opacity: 0.8;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.mmdMessageBalloon > div:after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: -9px;
+    border-top: 5px solid transparent;
+    border-left: 10px solid #BCE8F1;
+    border-bottom: 5px solid transparent;
+}
+
+.dialog-upload-file-input{
+    display: none !important;
+}

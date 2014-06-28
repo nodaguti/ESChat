@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <title>ESChat</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-notify.css" />
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">ESChat</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="client.html">Client</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="notifications top-center"></div>
+        <div class="notifications top-right"></div>
+
+        <div class="panel panel-danger panel-error-unsupported">
+            <div class="panel-heading">
+                <h3 class="panel-title">初期化中</h3>
+            </div>
+            <div class="panel-body">
+                <p>カメラを初期化しています. もしこの表示が消えない場合には, 以下の項目をチェックしてください.</p>
+
+                <ul>
+                    <li>
+                        カメラの利用確認ダイアログが表示されている場合には, 使用を許可してください.
+                    </li>
+                    <li>
+                        WebRTC に未対応のブラウザを使用していませんか？
+                        <a href="http://caniuse.com/rtcpeerconnection">対応ブラウザ</a>をご利用ください.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="chat-container" class="row">
+            <div id="subview-container" class="col-xs-12 col-sm-12 col-md-4 col-lg-5 pull-right">
+                <ul class="list-group">
+                    <li class="list-group-item">Your ID: <strong class="local-id"></strong></li>
+                    <li class="list-group-item">Peer's ID: <strong class="remote-id"></strong></li>
+                </ul>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title pull-left">Chat History</h3>
+
+                        <div class="pull-right" id="toolbox-container">
+                            <button class="btn btn-sm btn-success btn-call" disabled="disabled"
+                                    data-toggle="tooltip" data-placement="bottom" title="チャット開始">
+                                <span class="glyphicon glyphicon-earphone"></span>
+                            </button>
+                            <button class="btn btn-sm btn-danger btn-end" disabled="disabled"
+                                    data-toggle="tooltip" data-placement="bottom" title="チャット終了">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </button>
+                            <button class="btn btn-sm btn-default btn-upload" disabled="disabled"
+                                    data-toggle="tooltip" data-placement="bottom" title="ファイル送信">
+                                <span class="glyphicon glyphicon-cloud-upload"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul id="chat-history" class="list-unstyled"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="video-inputbox-container" class="col-md-8 col-lg-7">
+                <div id="video-container">
+                    <video id="localVideo" height="120" width="160" autoplay muted></video>
+                    <video id="remoteVideo" height="480" width="640" autoplay></video>
+                    <canvas id="headtracker"></canvas>
+                    <canvas id="remoteDisplay" height="480" width="640"></canvas>
+                    <div id="messageBalloonContent"></div>
+                </div>
+                <div class="input-group chat-inputbox">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-toggle-avatar"
+                                data-toggle="tooltip" data-placement="bottom" title="アバターモード">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </button>
+                    </span>
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-submit">
+                            <span class="glyphicon glyphicon-transfer"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="dialog-upload">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">ファイル送信</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        以下より送信するファイルを選択するか, ファイルをウィンドウにドロップして下さい.
+                        (複数ファイルの同時送信も可能です)
+                    </p>
+                    <input type="file" class="dialog-upload-file-input"
+                           value="ファイルを選択" multiple="multiple" />
+                    <a href="#" class="btn btn-primary btn-upload">ファイルを選択</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/lib/peer.min.js"></script>
+    <script src="js/lib/promise.min.js"></script>
+    <script src="js/lib/gl-matrix.js"></script>
+    <script src="js/lib/glMatrixUtils.js"></script>
+    <script src="js/lib/sjis.js"></script>
+    <script src="js/lib/MMD.js"></script>
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/jquery.ba-throttle-debounce.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/bootstrap-notify.js"></script>
+    <script src="js/lib/bootbox.min.js"></script>
+    <script src="js/lib/headtrackr.min.js"></script>
+    <script src="js/lib/balloons.js"></script>
+
+    <script src="js/polyfills.js"></script>
+    <script src="js/MediaConnection.js"></script>
+    <script src="js/DataConnection.js"></script>
+    <script src="js/FileConnection.js"></script>
+    <script src="js/LocalVideo.js"></script>
+    <script src="js/VideoFrontend.js"></script>
+    <script src="js/MMDFrontend.js"></script>
+    <script src="js/Chat.js"></script>
+    <script src="js/Client.js"></script>
+
+    <script>
+        $(function(){
+            Client.init();
+
+            //Preload MMD Model
+            setTimeout(function(){
+                new MMD.Model('model', 'Claudia.pmd');
+            }, 0);
+        });
+    </script>
+
+</body>
+
+</html>

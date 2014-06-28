@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <title>ESChat</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-notify.css" />
+    <link rel="stylesheet" href="css/main.css" />
+
+    <script>
+        function launchClient(e){
+            e.preventDefault();
+            location.href = "https://" + location.host + location.pathname + 'client.html';
+        }
+    </script>
+
+    <style>
+        p{
+            text-indent: 1em;
+            line-height: 1.5;
+        }
+
+        .carousel{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 400px;
+        }
+
+        .carousel .item,
+        .carousel-inner > .item > img{
+            height: 400px;
+            min-width: 100%;
+        }
+
+        .carousel-caption{
+            position: absolute;
+            top: 120px;
+            left: 100px;
+            color: #fff;
+            text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4), 0px -1px 1px rgba(0, 0, 0, 0.4);
+            background-color: transparent;
+        }
+
+        .marketing{
+            margin-top: 350px;
+            padding-top: 0 !important;
+            padding-bottom: 40px;
+        }
+
+        .marketing .col-lg-3{
+            text-align: center;
+        }
+
+        .marketing .col-lg-3 > h2{
+            font-size: 25px;
+        }
+
+        .marketing .col-lg-3 > p{
+            text-indent: 0;
+            text-align: left;
+        }
+
+        .marketing .col-lg-3 > img,
+        .marketing .col-lg-3 > span{
+            display: inline-block;
+            font-size: 80px;
+        }
+
+        section > h1{
+            text-align: center;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">ESChat</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="client.html">Client</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Credit
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu" role="menu">
+                            <li><a href="#">
+                                ESChat 0.1<br />
+                                Copyright &copy; 2014 Software Development Group #B9-1. All rights reserved.
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="img/carousel.jpg" alt="" />
+                <div class="carousel-caption">
+                    <h1>ESChat</h1>
+                    <p class="lead">WebRTC を用いた Peer-to-Peer 高機能ビデオチャット</p>
+                    <a class="btn btn-lg btn-primary" href="client.html" onclick="launchClient(event)">チャットを開始</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container marketing">
+        <section>
+            <h1>新しい、チャットの体験を。</h1>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <span class="glyphicon glyphicon-facetime-video"></span>
+                    <h2>プラグインレスなビデオチャット</h2>
+                    <p>WebRTC 技術を使用することで、ブラウザーにプラグインをインストールすることなくビデオチャットをお楽しみ頂けます。</p>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <span class="glyphicon glyphicon-picture"></span>
+                    <h2>吹き出し</h2>
+                    <p>顔検出技術と音声認識技術により、入力された文字や話した内容が顔の横に吹き出しで表示されます。</p>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <span class="glyphicon glyphicon-transfer"></span>
+                    <h2>ファイル送受信</h2>
+                    <p>様々なファイルをブラウザーにドラッグ・アンド・ドロップするだけで、簡単に相手にファイルを送信できます。</p>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <img class="img-rounded" src="img/miku.jpg" width="80" height="80" alt="" />
+                    <h2>アバター</h2>
+                    <p>相手に顔を見せたくない。そんな時は、アバターモードに切り替えれば初音ミクが代わりに顔出し役をしてくれます。</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
