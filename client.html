@@ -78,6 +78,23 @@
                                     data-toggle="tooltip" data-placement="bottom" title="ファイル送信">
                                 <span class="glyphicon glyphicon-cloud-upload"></span>
                             </button>
+                            <button class="btn btn-sm btn-default btn-upload"
+                                    data-container="body"
+                                    data-toggle="popover"
+                                    title="Settings"
+                                    data-placement="bottom"
+                                    data-content='
+                                        <label>
+                                            <input type="checkbox" data-id="pref-hide-speech-message"
+                                                   onclick="document.body.classList.toggle(this.dataset.id);"/> 音声認識のメッセージを隠す
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" data-id="pref-hide-interim-message"
+                                                   onclick="document.body.classList.toggle(this.dataset.id);"/> 認識途中のメッセージを隠す
+                                        </label>
+                                    '>
+                                <span class="glyphicon glyphicon-cog"></span>
+                            </button>
                         </div>
                     </div>
                     <div class="panel-body">

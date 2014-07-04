@@ -116,6 +116,9 @@ var Client = {
 
         //通話終了ボタン
         $('#toolbox-container > .btn-end')[0].addEventListener('click', this.close.bind(this), false);
+
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover({ html: true });
     },
 
 

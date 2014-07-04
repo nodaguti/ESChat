@@ -278,7 +278,7 @@ Chat.prototype = {
 
             //認識結果が4文字以上の場合にのみ送信する
             if(isFinal || result.length > 4){
-                this.sendMessage(result, isFinal);
+                this.sendMessage(result, isFinal, true);
             }
 
             // 認識結果の文字列長が15文字を超えたら、認識を再起動する
@@ -312,10 +312,11 @@ Chat.prototype = {
      * @param {String} msg 送信するメッセージ
      * @param {Boolean} isFinal 最終確定メッセージかどうか
      */
-    sendMessage: function(msg, isFinal){
+    sendMessage: function(msg, isFinal, isSpeech){
         var data = {
             type: 'message',
             isFinal: isFinal,
+            isSpeech: !!isSpeech,
             time: Date.now(),
             id: this._localID,
             value: msg,
@@ -357,7 +358,9 @@ Chat.prototype = {
         switch(data.type){
 
             case 'message':
-                type = 'well well-sm';
+                type = 'well well-sm' +
+                        (data.isSpeech ? ' message-speech' : ' message-text') +
+                        (!data.isFinal ? ' message-interim' : ' message-final');
                 body = data.value;
                 break;
 

@@ -71,6 +71,14 @@ body{
     margin-top: 10px;
 }
 
+.pref-hide-speech-message #chat-history .message-speech{
+    display: none;
+}
+
+.pref-hide-interim-message #chat-history .message-interim{
+    display: none;
+}
+
 
 /* *** 画面オーバーレイ *** */
 
