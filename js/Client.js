@@ -475,7 +475,9 @@ var Client = {
             message: { text: 'チャットが切断されました.' }
         }).show();
 
-        $('#toolbox-container > .btn-call').removeAttr('disabled');
+        $('#toolbox-container > .btn-call').removeAttr('disabled')
+        .attr('data-original-title', 'チャットを続けて行うには, ページをリロードして下さい.');
+
         $('#toolbox-container > .btn-end').attr('disabled', 'disabled');
         $('#toolbox-container > .btn-upload').attr('disabled', 'disabled');
 
