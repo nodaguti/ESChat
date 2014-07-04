@@ -292,7 +292,7 @@ var Client = {
             this.fileConnection.close();
         }catch(ex){}
 
-        this._socket.send(JSON.stringify({ type: 'CHAT_ENDED' }));
+        this._socket.send(JSON.stringify({ type: 'LOGOUT' }));
     },
 
 
@@ -478,6 +478,8 @@ var Client = {
         $('#toolbox-container > .btn-call').removeAttr('disabled');
         $('#toolbox-container > .btn-end').attr('disabled', 'disabled');
         $('#toolbox-container > .btn-upload').attr('disabled', 'disabled');
+
+        this._socket.send(JSON.stringify({ type: 'CHAT_ENDED' }));
     },
 
 
