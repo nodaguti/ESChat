@@ -292,7 +292,7 @@ var Client = {
             this.fileConnection.close();
         }catch(ex){}
 
-        this._socket.send(JSON.stringify({ type: 'LOGOUT' }));
+        this._socket.send(JSON.stringify({ type: 'CHAT_ENDED' }));
     },
 
 
