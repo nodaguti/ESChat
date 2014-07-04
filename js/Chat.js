@@ -25,12 +25,15 @@ Chat.prototype = {
 
 
         this.inputbox.querySelector('.btn-submit').addEventListener('click', function(ev){
-            this.sendMessage(this.inputbox.querySelector('input[type="text"]').value, true);
+            var textbox = this.inputbox.querySelector('input[type="text"]');
+            this.sendMessage(textbox.value, true);
+            textbox.value = '';
         }.bind(this), false);
 
         this.inputbox.querySelector('input[type="text"]').addEventListener('keydown', function(ev){
             if((ev.keyCode || ev.charCode) !== 13) return;
             this.sendMessage(ev.target.value, true);
+            ev.target.value = '';
         }.bind(this), false);
 
 
